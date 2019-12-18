@@ -1,0 +1,9 @@
+body {
+    font-family: "Microsoft YaHei", times, "Times New Roman",Georgia,Serif
+}
+    /* 选择器 {样式} */
+    /* 给谁改样式 {改什么样式} */
+p {
+    color: darkblue;
+    font-size: 18px;
+}
