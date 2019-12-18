@@ -1,5 +1,6 @@
 body {
-    font-family: "Microsoft YaHei", times, "Times New Roman",Georgia,Serif
+    font-family: "Microsoft YaHei", times, "Times New Roman",Georgia,Serif;
+    background-color: lightskyblue;
 }
     /* 选择器 {样式} */
     /* 给谁改样式 {改什么样式} */
