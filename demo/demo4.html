@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index of DEMOs</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!-- link rel="stylesheet" href="main.css" -->
+    <!-- link rel="shortcut icon" href="favicon.ico" --> 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        .mainbox {
+            width: 1024px;
+            height: 600px;
+            background-color: pink;
+            font-size: 1.5em;
+            margin: 10px auto 600px;
+        }
+        ul>li {
+            list-style: none;
+        }
+        .stream {
+            width: 20px;
+            height: 100%;
+            text-align: center;
+            color: lightgreen;
+            font-size: 28px;
+            background: black;
+            word-wrap: break-word;
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function() {
+            let arr = [0];
+            var stream = document.querySelector('.stream');
+            
+            setInterval(function() {
+                let rnd = Math.floor(Math.random()*9);
+                arr.unshift(rnd);
+                if (arr.length > 19) {
+                    arr.pop();
+                }
+                let str = arr.join('');
+                stream.innerHTML = str;
+            }, 100);
+        });
+    </script>
+</head>
+<body>
+    <h1>title bar</h1>
+    <div class="mainbox">
+        <div class="stream"></div>
+    <ul></ul>
+    </div>
+</body>
+</html>
