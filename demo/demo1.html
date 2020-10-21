@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DEMO1 move box</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!-- link rel="stylesheet" href="main.css" -->
+    <!-- link rel="shortcut icon" href="favicon.ico" --> 
+    <style>
+        div {
+            font-size: 1.5em;
+        }
+        .mainbox {
+            width: 800px;
+            height: 600px;
+            background-color: pink;
+        }
+        .subox {
+            
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: rgb(88,120,160);
+            text-align: center;
+            line-height: 100px;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+        .btns {
+            float: left;
+            width: 88px;
+            height: 88px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 88px;
+        }
+        .btns:hover {
+            background-color: green;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function() {
+            let inbox = document.getElementById("inbox");
+            let btnUp = document.getElementById("up");
+            let btnDown = document.getElementById("down");
+            let btnLeft = document.getElementById("left");
+            let btnRight = document.getElementById("right");
+
+            btnUp.addEventListener("click", function(){
+                runH(-10);
+            });
+            btnDown.addEventListener("click", function(){
+                runH(10);
+            });
+            btnLeft.addEventListener("click", function(){
+                runV(-10);
+            });
+            btnRight.addEventListener("click", function(){
+                runV(10);
+            });
+
+            function runV(step) {
+                inbox.style.left = inbox.offsetLeft + step + "px";
+            }
+            function runH(step) {
+                inbox.style.top = inbox.offsetTop + step + "px";
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="mainbox">mainbox
+        <div class="subox" id="inbox">in</div>
+    </div>
+    <div class="btns" id="up">up</div>
+    <div class="btns" id="down">down</div>
+    <div class="btns" id="left">left</div>
+    <div class="btns" id="right">right</div>
+    <script>
+    </script>
+</body>
+</html>

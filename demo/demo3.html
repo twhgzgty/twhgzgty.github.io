@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo3</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <style>
+        div {
+            /* font-size: 1.5em; */
+        }
+        .mainbox {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            background-color: pink;
+            text-align: center;
+        }
+        .btn {
+            width: 100px;
+            height: 50px;
+            background-color: grey;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: lightgrey;
+            cursor: pointer;
+        }
+        span {
+            line-height: 50px;
+            background-color: white;
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function() {
+            let pool = document.querySelector('.mainbox');
+            let poolWidth = pool.clientWidth;
+            let poolHeight = pool.clientHeight;
+
+            let start = document.querySelector('#start');
+            start.addEventListener('click', function() {
+                let colors = [ 'ivory', 'red', 'yellow', 'green', 'brown', 'blue', 'violet', 'grey', 'skyblue', 'orange'];
+                let rnd = Math.floor((Math.random()*10));
+
+                let ball = document.createElement('div');
+                ball.style.cssText = "position:absolute;border-radius:50%";
+                let ballRadius = (Math.floor(Math.random()*50)+30) / 2;
+                ball.style.width = ballRadius + 'px';
+                ball.style.height = ballRadius + 'px';
+                ball.style.fontSize = ballRadius / 2 + 'px';
+                ball.style.lineHeight = ballRadius + 'px';
+                ball.style.backgroundColor = 'white';
+                ball.style.borderStyle = 'solid';
+                ball.style.borderWidth = ballRadius * .7  + 'px';
+                ball.style.borderColor = colors[rnd];
+                pool.appendChild(ball);
+
+                let ballX = poolWidth/2 - ball.offsetWidth/2;
+                let ballY = poolHeight/2 - ball.offsetHeight/2;
+
+                ball.style.top = ballY + 'px';
+                ball.style.left = ballX + 'px';
+
+                ball.innerHTML = rnd;
+
+                let x = Math.floor(Math.random()*10)+1;
+                Math.random() < 0.5 ? x = x * -1 : x = x;
+                let y = Math.floor(Math.random()*10)+1;
+                Math.random() > 0.5 ? y = y * -1 : y = y;
+
+                setInterval(function() {
+                    ballY += y;
+                    ballX += x;
+                    if (ballX <= 0 || ballX >= (poolWidth - ball.offsetWidth)) {
+                        x = -x;
+                    };
+                    if (ballY <= 0 || ballY >= (poolHeight - ball.offsetHeight)) {
+                        y = -y;
+                    };
+
+                    ball.style.top = ballY + 'px';
+                    ball.style.left = ballX + 'px';
+                }, 30)
+
+
+            });
+
+            let reset = document.querySelector('#reset');
+            reset.addEventListener('click', function() {
+            	pool.innerHTML = "mainbox";
+            });
+        });
+    </script>
+</head>
+<body>
+    <button class="btn" id="start">发射</button>
+    <button class="btn" id='reset'>Reset</button>
+    <div class="mainbox">mainbox</div>
+</body>
+</html>

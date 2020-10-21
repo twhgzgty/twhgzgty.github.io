@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo2</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <style>
+        div {
+            font-size: 1.5em;
+        }
+        .mainbox {
+            position: relative;
+            margin: 0 auto 600px;
+            width: 800px;
+            height: 600px;
+            background-color: pink;
+            text-align: center;
+        }
+        #insidebar {
+            width: 100%;
+            height: 50px;
+            top: 250px;
+            background: skyblue;
+        }
+        button {
+            width: 100px;
+            height: 50px;
+            background-color: grey;
+            text-align: center;
+            font-size: 1.2em;
+            /* line-height: 50px; */
+        }
+        button:hover {
+            background-color: lightgrey;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function() {
+            let arr = [1, 2, 3];
+            let insideBar = document.querySelector('#insidebar');
+
+            let btnPush = document.querySelector('#btnPush');
+            btnPush.addEventListener('click', function() {
+                let rnd = Math.floor(Math.random()*9);
+                arr.push(rnd);
+                insideBar.innerHTML=arr;
+            });
+
+            let btnPop = document.querySelector('#btnPop');
+            btnPop.addEventListener('click', function() {
+                arr.pop();
+                insideBar.innerHTML=arr;
+            });
+            let btnUnshift = document.querySelector('#btnUnshift');
+            btnUnshift.addEventListener('click', function() {
+                let rnd = Math.floor(Math.random()*9);
+                arr.unshift(rnd);
+                insideBar.innerHTML=arr;
+            });
+            let btnShift = document.querySelector('#btnShift');
+            btnShift.addEventListener('click', function() {
+                arr.shift();
+                insideBar.innerHTML=arr;
+            });
+            let reset = document.querySelector('#reset');
+            reset.addEventListener('click', function() {
+                arr=[];
+                insideBar.innerHTML=null;
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="mainbox">mainbox
+        <div style="width:800px; height:200px"></div>
+        <div id="insidebar"></div>
+        <button id="btnPush">push</button>
+        <button id="btnPop">pop</button>
+        <button id="btnUnshift">unshift</button>
+        <button id="btnShift">shift</button>
+        <button id="reset">reset</button>
+    </div>
+</body>
+</html>
