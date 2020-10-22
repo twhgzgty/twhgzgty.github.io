@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Index of DEMOs</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <!-- link rel="stylesheet" href="main.css" -->
-    <!-- link rel="shortcut icon" href="favicon.ico" --> 
     <style>
         * {
             margin: 0;
@@ -28,6 +25,7 @@
             list-style: none;
         }
         .stream {
+            float: left;
             width: 20px;
             height: 100%;
             text-align: center;
@@ -40,26 +38,40 @@
     </style>
     <script>
         window.addEventListener('load', function() {
+            let mainbox = document.querySelector('.mainbox');
+            let mWidth = mainbox.clientWidth;
             let arr = [0];
-            var stream = document.querySelector('.stream');
-            
-            setInterval(function() {
+
+            function randomArr() {
                 let rnd = Math.floor(Math.random()*9);
                 arr.unshift(rnd);
                 if (arr.length > 19) {
                     arr.pop();
+                    return(arr)
                 }
-                let str = arr.join('');
-                stream.innerHTML = str;
-            }, 100);
+            }
+
+            for (let i=0; i < Math.floor(mWidth/20); i++) {
+                let intVtime = Math.floor((Math.random()*533)+100);
+                let stream = document.createElement('div');
+                stream.className = 'stream';
+                mainbox.appendChild(stream);
+
+                setInterval(function() { 
+                    randomArr();
+                    stream.innerHTML = arr.join("");
+                }, intVtime);
+            }
+
         });
     </script>
 </head>
 <body>
     <h1>title bar</h1>
     <div class="mainbox">
-        <div class="stream"></div>
     <ul></ul>
     </div>
+    <script>
+    </script>
 </body>
 </html>
