@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo 5</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        .mainbox {
+            position: relative;
+            width: 1024px;
+            height: 600px;
+            background-color: pink;
+            margin: 0px auto;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        #frame {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            background: ivory;
+            margin: 0 auto;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        #eyeframe {
+            position: absolute;
+            border: 4px solid;
+            border-radius: 100% 0;
+            margin: 0 auto;
+            transform: rotate(45deg);
+            box-shadow: 0 0 0 400px pink;
+        }
+        #eyeball {
+            position: absolute;
+            border: 1px solid transparent;
+            border-radius: 50%;
+            background: black;
+        }
+    </style>
+    <script></script>
+</head>
+<body>
+<h1>EYE</h1>
+    <div class="mainbox">
+        <div id="frame">
+            <p id="eyeball"></p>
+            <div id="eyeframe"></div>
+        </div>
+        <p id="info"></p>
+    </div>
+    <script>
+        let eyeballColor = 'black';
+
+        let frame = document.getElementById('frame');
+        let eyeframe = document.getElementById('eyeframe');
+        let eyeball = document.querySelector('#eyeball');
+
+
+        // 眼眶计算公式:
+        // 眼角间距(即眼宽)=父盒子宽度
+        let eyewidth = frame.clientWidth - 8;
+        // 眼眶盒子边长=眼角间距✖️ 0.7(即:边长=对角线*cos45)
+        let eyeboxwidth = Math.floor(eyewidth *.7);
+        eyeframe.style.width = `${eyeboxwidth}px`;
+        eyeframe.style.height = `${eyeboxwidth}px`;
+        // 眼眶盒子定位=(父盒子宽高-眼眶盒子宽高)/2
+        eyeframe.style.left = `${(eyewidth - eyeframe.clientWidth) /2}px`;
+        eyeframe.style.top = `${(frame.clientHeight - eyeframe.clientHeight) /2}px`;
+        // 眼球直径=(眼眶盒子边长-对角线的一半)✖️ 2
+        // 简便算法盒子边长为对角线0.7倍,对角线一半为0.5,差0.2
+        eyeballwidth = Math.round((eyewidth *.4));
+        eyeball.style.width = `${eyeballwidth}px`;
+        eyeball.style.height = `${eyeballwidth}px`;
+        // 眼球定位=(父盒子宽高-眼球宽高)/2
+        eyeball.style.left = `${(frame.clientWidth - eyeballwidth)/2}px`;
+        eyeball.style.top = `${(frame.clientHeight + 4 - eyeballwidth)/2}px`;
+
+        let title = document.querySelector('h1');
+
+        function closeEye() {
+            title.innerHTML = 'eye Close';
+            eyeframe.style.backgroundColor = 'pink';
+            eyeframe.style.borderLeft = '4px solid pink';
+            eyeframe.style.borderTop = '4px solid pink';
+        }
+
+        function openEye() {
+            title.innerHTML = 'eye Open';
+            eyeframe.style.backgroundColor = 'transparent';
+            eyeframe.style.borderLeft = '4px solid';
+            eyeframe.style.borderTop = '4px solid';
+        }
+
+        eyeframe.addEventListener('mouseover', function() {
+            title.style.cursor = 'pointer';
+            closeEye();
+        });
+        eyeframe.addEventListener('mouseout', function() {
+            title.style.cursor = 'auto';
+            openEye();
+        });
+
+        eyeframe.onclick = function() {
+        }
+        
+        let info = document.getElementById('info');
+        info.style.bottom = '0';
+        info.style.position = 'absolute';
+
+        document.addEventListener('mousemove', function(e) {
+            pXY(e);
+        });
+        function pXY(event) {
+            let px = event.clientX;
+            let py = event.clientY;
+            info.innerHTML = `X坐标: ${px}, Y坐标: ${py}`;
+        };
+    </script>
+</body>
+</html>
