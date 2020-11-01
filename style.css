@@ -1,10 +1,52 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
 body {
     font-family: "Microsoft YaHei", times, "Times New Roman",Georgia,Serif;
     background-color: lightskyblue;
 }
     /* 选择器 {样式} */
     /* 给谁改样式 {改什么样式} */
+header {
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+}
+main {
+    width: 80%;
+    margin: 0 auto;
+}
+section {
+    width: 100%;
+}
+
 p {
+    height: 80px;
     color: darkblue;
     font-size: 18px;
+    line-height: 80px;
+    text-align: center;
 }
+ul {
+
+}
+ul>li {
+    float: left;
+    list-style: none;
+    width: 300px;
+    height: 80px;
+    text-align: center;
+    line-height: 80px
+}
+
+    .clearfix:after {
+        display:block;
+        clear:both;
+        content:"";
+        visibility:hidden;
+        height:0;
+    }
+
+    .clearfix {zoom:1}
