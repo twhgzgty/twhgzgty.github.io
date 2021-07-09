@@ -1,51 +1,110 @@
-//检查是否已经有提示窗口，没有则新建
-    function init() {
-        let test = document.getElementById("test");
+function wangda() {
+    /* 判断网址是否为wangda */
+    const hostname = "wangda.chinamobile.com"
+    if (document.location.hostname == hostname) {
 
+        // 正式脚本开始
+
+        // 创建信息弹窗
+        let test = document.getElementById("test");
+        // defined a popup for infor;
         if (test == null) {
             test = document.createElement("div");
-            ;
-        }
-//设置提示窗口样式属性等
-        test.id = "test";
-        test.style.position="fixed";
-        test.style.top="30%";
-        test.style.left="70%";
-        test.style.width="300px";
-        test.style.minHeight="50px";
-        test.style.backgroundColor="pink";
-        test.style.zIndex="9";
-        test.innerHTML = "0033<br />";
-        document.body.appendChild(test);
+            test.id = "test";
+            test.style.position="fixed";
+            test.style.top="30%";
+            test.style.left="70%";
+            test.style.width="300px";
+            test.style.minHeight="60px";
+            test.style.backgroundColor="pink";
+            test.style.zIndex="9";
+            test.innerHTML = "0033<br />";
+            document.body.appendChild(test);
+        } else { test.innerHTML = "3322<br />" }
 
-//初始化变量，设置搜索关键字
+
+        //变量
         let idx = ""; let str; let alls; let total = [];
-        //let target = ["开始学习","重新学习"]
-        str = "重新学习";
+        let target = ["继续学习","开始学习","重新学习", "未开始","学习中","已完成"];
+        str = target[5];
+        alls = document.body.querySelectorAll("*");
+        title = document.title;
+        course = document.body.querySelectorAll("dl")
 
-//根据关键字在页面中获取元素
-        alls = document.querySelectorAll("div")
+        //函数
 
-//循环查找所需对象
-        for (let each in alls) {
-            if (alls[each].innerHTML == str) {
-                //idx = each;
-                total.push(each);
-                //break;
-            } else {
-                idx = "";
+        //从课程列表中找可以学习课程
+        function testGetCourse() {
+            for (each of alls) {
+                if ( each.innerText == str) {
+                    total.push(each); }
+                switch(each.innerText) {
+                case target[0]: //继续学习
+                    console.log(each.tagName,each.innerHTML);
+                    alert(each)
+                    break;
+                case target[1]: //开始学习
+                    console.log(each.tagName,each.innerHTML)
+                    break;
+                case target[2]: //重新学习
+                    console.log(each.tagName,each.innerHTML);
+                    break;
+                /*
+                case target[3]: //未开始
+                    console.log(each.tagName,each.innerHTML);
+                    break;
+                case target[4]: //学习中
+                    console.log(each.tagName,each.innerHTML);
+                    break;
+                case target[5]: //已完成
+                    console.log(each.tagName,each.innerHTML);
+                    break;
+                */
+                } 
             }
         }
+        //======================================
 
-//遍历已找到项
-        for (let i = 0; i < total.length;i++) {
-            test.innerHTML += "已找到" + total[i] + "<br>";
+        function fn() {
+            for (i = 0, len = total.length ;  i < len ; i++) {
+                test.innerHTML += "已找到" + i + " " + total[i].innerHTML + "<br>";
+            }
+
         }
-    }
+        
+        //获取课程列表信息
+        function testGetInfo() {
+            const list = new Array;
+            for (each of alls) { 
+                if (/script|style|form|img|^h+/i.test(each.tagName)) {continue}; 
+                if (each.className.includes("required")) {
+                    list.push(each); 
+                    //console.log(each);
+                    test.innerHTML += each + "<br>";
+                }
+            //return list
+        }
 
-    setTimeout(()=> {
-        init()
-    },1000)
+        }
+
+
+        //输出信息
+        test.innerHTML = title + "<br>" + course;
+        
+        testGetInfo()
+
+        //alls[idx].focus();
+
+        //document.activeElement.click();
+
+        // 正式脚本结束
+
+
+    } else {alert("当前网站不适用！"); return} 
+}
+
+
+window.onload = wangda();
 
 #================================================
 //检查提示窗口
